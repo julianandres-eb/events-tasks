@@ -1,0 +1,17 @@
+{% block content %}
+   <table>
+   {% for task in object_list %}
+       <tr>
+           <td>{{task.id}}</td>
+           <td>{{task.author}}</td>
+           <td>{{task.task_name}}</td>
+           <td>{{task.priority}}</td>
+           <td>{{task.done}}</td>
+           <td>{{task.create_date}}</td>
+           <td>{{task.change_date}}</td>
+
+       </tr>
+   {% endfor %}
+   </table>
+   <p><a href=“{% url 'task-create' %}“>Create</a></p>
+{% endblock %}
