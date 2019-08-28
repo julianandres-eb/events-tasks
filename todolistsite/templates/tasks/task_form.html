@@ -1,7 +1,13 @@
+{% extends 'bulma/base.html' %}
+
+{% load bulma_tags %}
+
 {% block content %}
-<form method=“post”>
+<form action="" method="post">
    {% csrf_token %}
-   {{ form }}
-   <input type="submit" value="Submit" />
+   {{ form|bulma }}
+   <div class="field">
+     <button type="submit" class="button is-primary is-rounded">Submit</button>
+   </div>
 </form>
 {% endblock %}

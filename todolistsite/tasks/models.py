@@ -15,8 +15,8 @@ class Priority(models.Model):
 # TASK
 class Task(models.Model):
     name_task = models.CharField(max_length=200)
-    created_date = models.DateTimeField('Creation Date')
-    changed_date = models.DateTimeField('Date of Change')
+    created_date = models.DateField('Creation Date', auto_now=True)
+    changed_date = models.DateField('Date of Change', auto_now=True)
     done = models.BooleanField()
     priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
     author = models.ForeignKey(
