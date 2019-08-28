@@ -2,7 +2,7 @@
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView 
+from django.contrib.auth.views import LoginView, LogoutView
 from .models import Task
 from django.urls import (
     reverse_lazy
@@ -10,6 +10,10 @@ from django.urls import (
 
 
 class TaskLogin(LoginView):
+    pass
+
+
+class TaskLogout(LogoutView):
     pass
 
 
