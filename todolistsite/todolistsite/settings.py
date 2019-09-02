@@ -138,5 +138,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/tasks/'
+LOGIN_REDIRECT_URL = '/events/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'

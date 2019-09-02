@@ -8,6 +8,8 @@
            <th>Task Name</th>
            <th>Priority</th>
            <th>Done</th>
+           <th>Start Date Time</th>
+           <th>End Date Time</th>
            <th> </th>
            <th> </th>
        </tr>
@@ -18,11 +20,13 @@
                 <td>{{task.name_task}}</td>
                 <td>{{task.priority}}</td>
                 <td>{{task.done}}</td>
-                <td><a class="button is-primary is-rounded" href="{% url 'task-update' pk=task.id%}">Update</a></td>
-                <td><a class="button is-danger is-rounded" href="{% url 'task-delete' pk=task.id%}">Delete</a></td>
+                <td>{{task.start_date_time}}</td>
+                <td>{{task.end_date_time}}</td>
+                <td><a class="button is-danger is-rounded" href="{% url 'task-delete' event_id task.id %}">Delete</a></td>
+                <td><a class="button is-warning is-rounded" href="{% url 'task-update' event_id task.id %}">Update</a></td>
             </tr>
         {% endfor %}
        </tbody>
    </table>
-   <p><a class="button is-primary is-rounded" href="{% url 'task-create' %}">Create</a></p>
+   <p><a class="button is-primary is-rounded" href="{% url 'task-create' event_id %}">Create</a></p>
 {% endblock %}
