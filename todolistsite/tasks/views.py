@@ -1,4 +1,3 @@
-# from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -9,6 +8,10 @@ from django.urls import (
     reverse_lazy
 )
 from eventbrite import Eventbrite
+
+empty_response = {
+    "events": []
+}
 
 
 class TaskLogin(LoginView):
@@ -24,11 +27,14 @@ class EventList(TemplateView):
     template_name = 'events/list_events.html'
 
     def get_events(self):
+        import ipdb; ipdb.set_trace()
         social = self.request.user.social_auth.filter(provider='eventbrite')[0]
         token = social.access_token
         eventbrite = Eventbrite(token)
-        events = eventbrite.get('/users/me/events')['events']
-        return events
+        events = eventbrite.get('/users/me/events/')
+        if not events['events']:
+            return empty_response
+        return events['events']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -38,7 +44,7 @@ class EventList(TemplateView):
 
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
-    fields = ['name_task', 'priority', 'done', '']
+    fields = ['name_task', 'priority', 'done']
 
     def get_queryset(self):
         return Task.objects.filter(event_id=int(self.kwargs['event_id']))
